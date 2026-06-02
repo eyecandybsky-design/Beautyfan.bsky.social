@@ -1,0 +1,54 @@
+name: Beautyfan
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "4 * * * *"
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install atproto
+
+      - name: Run Beautyfan bot
+        env:
+          BSKY_USERNAME: ${{ secrets.BSKY_USERNAME_BEAUTYFAN }}
+          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD_BEAUTYFAN }}
+          STATE_FILE: state_beautyfan.json
+          MAX_PER_RUN: 100
+          MAX_PER_USER: 3
+          HOURS_BACK: 2
+          SLEEP_SECONDS: 2
+          LIST_MEMBER_LIMIT: 1500
+          AUTHOR_POSTS_PER_MEMBER: 30
+          FEED_MAX_ITEMS: 500
+          HASHTAG_MAX_ITEMS: 100
+          PROMO_RANDOM_POOL: 25
+          PROMO_FETCH_PER_MEMBER: 100
+          POST_COOLDOWN_HOURS: 3
+        run: python beautyfan_reposter.py
+
+      - name: Commit state
+        if: always()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add state_beautyfan.json
+          git diff --cached --quiet || git commit -m "Update Beautyfan state"
+          git push
