@@ -3,7 +3,7 @@ name: Beautyfan
 on:
   workflow_dispatch:
   schedule:
-    - cron: "4 * * * *"
+    - cron: "5,35 * * * *"
 
 jobs:
   run-bot:
