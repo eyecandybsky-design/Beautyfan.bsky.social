@@ -1,8 +1,7 @@
 name: Beautyfan
 
 on:
-  schedule:
-    - cron: "12 * * * *"
+  
   workflow_dispatch:
 
 jobs:
