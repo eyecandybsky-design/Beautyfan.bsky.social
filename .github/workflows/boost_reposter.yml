@@ -1,0 +1,34 @@
+name: Beautyfan Boost Reposter
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: beautyfan-boost
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    env:
+      BSKY_USERNAME: ${{ secrets.BSKY_USERNAME_BEAUTYFAN }}
+      BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD_BEAUTYFAN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install atproto
+
+      - name: Run Beautyfan Boost Bot
+        run: python boost_reposter.py
