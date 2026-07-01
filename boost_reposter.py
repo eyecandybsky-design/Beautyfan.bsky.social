@@ -7,8 +7,8 @@ from atproto import Client
 TARGET_ACCOUNT = "big-dominio.bsky.social"
 OWN_ACCOUNT = "beautyfan.bsky.social"
 
-RANDOM_POSTS = 1
-NEWEST_POSTS = 10
+RANDOM_POSTS = 0
+NEWEST_POSTS = 5
 OWN_POSTS = 3
 
 LOOKBACK_DAYS = 60
