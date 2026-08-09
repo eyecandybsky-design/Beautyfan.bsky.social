@@ -4,8 +4,7 @@ import time
 from datetime import datetime, timezone, timedelta
 from atproto import Client
 
-TARGET_ACCOUNT =
-    "big-dominio.bsky.social",
+TARGET_ACCOUNT ="big-dominio.bsky.social",
     "julyakawaii.bsky.social",
     "",
     "",
