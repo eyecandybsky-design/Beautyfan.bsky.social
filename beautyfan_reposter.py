@@ -37,7 +37,7 @@ FEEDS: Dict[str, Dict] = {
         "note": "",
         "enabled": 0,
         "allow_posts": 1,
-        "allow_replies": 0,
+        "allow_replies": 1,
         "allow_reposts": 0,
         "priority": 0,
     }
@@ -45,11 +45,11 @@ FEEDS: Dict[str, Dict] = {
 }
 
 FEEDS["feed 1"].update({
-    "link": "",
+    "link": "https://bsky.app/profile/did:plc:sp54ouue6fp2dlvn2cux54ka/feed/aaaia4sxjd6ts",
     "note": "PROMO FEED",
     "enabled": 0,
     "allow_posts": 1,
-    "allow_replies": 0,
+    "allow_replies": 1,
     "allow_reposts": 0,
     "priority": 10,
 })
