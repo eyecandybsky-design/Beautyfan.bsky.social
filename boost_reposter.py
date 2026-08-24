@@ -5,7 +5,7 @@ from datetime import datetime, timezone, timedelta
 from atproto import Client
 
 TARGET_ACCOUNT ="big-dominio.bsky.social"
-OWN_ACCOUNT = "julyakawaii.bsky.social"
+OWN_ACCOUNT = "womenworld.bsky.social"
 
 RANDOM_POSTS = 0
 NEWEST_POSTS = 3
