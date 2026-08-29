@@ -168,7 +168,7 @@ LIJSTEN["lijst 8"].update({
 })
 
 HASHTAGS = [
-    "",
+    "#sexypinupstickers",
     "",
     "",
 ]
