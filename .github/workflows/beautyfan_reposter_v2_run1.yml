@@ -1,0 +1,73 @@
+name: Beautyfan Total Reposter V2 - RUN 1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: beautyfan-reposter-v2-run1
+  cancel-in-progress: false
+
+jobs:
+  repost:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install atproto
+
+      - name: Run Beautyfan reposter
+        env:
+          BEAUTYFAN_BSKY_PASSWORD: ${{ secrets.BEAUTYFAN_BSKY_PASSWORD }}
+          RUN_MODE: RUN_1
+          STATE_FILE: beautyfan_v2_state.json
+
+          # ==================================================
+          # REDFOX — blijft dezelfde feed als HotBleusky
+          # ==================================================
+          REDFOX_FEED: https://bsky.app/profile/did:plc:cxrt7ggxkamgzxa47cggtees/feed/aaaoirmgh53zw
+
+          # ==================================================
+          # NIEUWE BEAUTYFAN-LIJSTEN
+          # Maak deze 4 lijsten aan op Beautyfan en plak
+          # daarna hieronder de volledige bsky.app URL.
+          # ==================================================
+          REPOST_ALWAYS_LIST: https://bsky.app/profile/did:plc:cvfulblhg2fttolrunih4ldv/lists/3mwtfemqkiy27
+          MULTIBOOSTER_LIST: https://bsky.app/profile/did:plc:cvfulblhg2fttolrunih4ldv/lists/3mwtff5vfya23
+          PROMO_LAST_LIST: https://bsky.app/profile/did:plc:cvfulblhg2fttolrunih4ldv/lists/3mwtffqd34u2l
+          PROMO_RANDOM_LIST: https://bsky.app/profile/did:plc:cvfulblhg2fttolrunih4ldv/lists/3mwtfgf5egc22
+
+          # ==================================================
+          # HASHTAG BLACKLIST — bestaande HotBleusky lijst
+          # ==================================================
+          HASHTAG_BLACKLIST_LIST: https://bsky.app/profile/did:plc:5tbowzedh5d6wvhc5dncydbx/lists/3mwm5xxglhp2r
+
+          # Hashtags bewust leeg: er wordt niet gezocht op hashtags.
+          # ==================================================
+
+        run: python beautyfan_reposter_v2.py
+
+      - name: Persist state
+        if: success()
+        run: |
+          if [ -f beautyfan_v2_state.json ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add beautyfan_v2_state.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Update Beautyfan V2 reposter state"
+              git push
+            fi
+          fi
