@@ -10,11 +10,11 @@ from atproto import Client, models
 # BEAUTYFAN TOTAL REPOSTER V2
 # Account: beautyfan.bsky.social
 #
-# RUN_1 (:16):
+# RUN_1 :
 #   RedFox + Repost Always + Hashtags
 #   + Multibooster + Promo Random + Own
 #
-# RUN_2 (:46):
+# RUN_2 :
 #   RedFox + Repost Always + Hashtags
 #   + Promo Last + Own
 #
@@ -32,7 +32,7 @@ RUN_MODE = os.getenv("RUN_MODE", "RUN_1").upper()
 STATE_FILE = os.getenv("STATE_FILE", "beautyfan_v2_state.json")
 
 MAX_ACTIONS = 100
-MAX_PER_USER = 3
+MAX_PER_USER = 5
 NORMAL_LOOKBACK_HOURS = 3
 REPOST_ALWAYS_REBOOST_HOURS = 8
 PROMO_MAX_AGE_HOURS = 12
