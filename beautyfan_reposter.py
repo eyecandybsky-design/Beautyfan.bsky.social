@@ -90,7 +90,7 @@ LIJSTEN: Dict[str, Dict] = {
 LIJSTEN["lijst 1"].update({
     "link": "https://bsky.app/profile/did:plc:zmyydkc2zzznc4smjufuerlx/lists/3mhs2vtwixg2q",
     "note": "bleuskyphoto 1",
-    "enabled": 1,
+    "enabled": 0,
     "allow_posts": 1,
     "allow_replies": 0,
     "allow_reposts": 0,
@@ -100,7 +100,7 @@ LIJSTEN["lijst 1"].update({
 LIJSTEN["lijst 2"].update({
     "link": "https://bsky.app/profile/did:plc:zmyydkc2zzznc4smjufuerlx/lists/3mhs2xmxmos2l",
     "note": "BLEUSKYPHOTO 2",
-    "enabled": 1,
+    "enabled": 0,
     "allow_posts": 1,
     "allow_replies": 0,
     "allow_reposts": 0,
